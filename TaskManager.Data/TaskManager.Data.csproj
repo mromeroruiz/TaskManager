@@ -54,10 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Group.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\201902061627488_addedmigration.cs" />
-    <Compile Include="Migrations\201902061627488_addedmigration.Designer.cs">
-      <DependentUpon>201902061627488_addedmigration.cs</DependentUpon>
+    <Compile Include="Migrations\201902081939009_InitialCreate.cs" />
+    <Compile Include="Migrations\201902081939009_InitialCreate.Designer.cs">
+      <DependentUpon>201902081939009_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902082114254_Migrated.cs" />
+    <Compile Include="Migrations\201902082114254_Migrated.Designer.cs">
+      <DependentUpon>201902082114254_Migrated.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ToDo.cs" />
@@ -68,8 +73,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902061627488_addedmigration.resx">
-      <DependentUpon>201902061627488_addedmigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902081939009_InitialCreate.resx">
+      <DependentUpon>201902081939009_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902082114254_Migrated.resx">
+      <DependentUpon>201902082114254_Migrated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,10 +3,19 @@ namespace TaskManager.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class addedmigration : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Group",
+                c => new
+                    {
+                        GroupID = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.GroupID);
+            
             CreateTable(
                 "dbo.IdentityRole",
                 c => new
@@ -111,6 +120,7 @@ namespace TaskManager.Data.Migrations
             DropTable("dbo.ToDo");
             DropTable("dbo.IdentityUserRole");
             DropTable("dbo.IdentityRole");
+            DropTable("dbo.Group");
         }
     }
 }

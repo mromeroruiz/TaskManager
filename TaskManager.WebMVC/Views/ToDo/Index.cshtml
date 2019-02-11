@@ -25,6 +25,7 @@
         <th>
             @Html.DisplayNameFor(model => model.ToDoID)
         </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -40,6 +41,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ToDoID)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -47,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.CreatedUtc)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ToDoID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ToDoID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ToDoID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.ToDoID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ToDoID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ToDoID })
             </td>
         </tr>
     }

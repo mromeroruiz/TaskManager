@@ -10,6 +10,7 @@ namespace TaskManager.Models
     public class ToDoListItem
     {
         public int ToDoID { get; set; }
+        public bool Checkbox { get; set; }
         public string Title { get; set; }
 
         public DateTimeOffset CreatedUtc { get; set; }

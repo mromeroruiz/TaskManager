@@ -33,6 +33,7 @@ namespace TaskManager.Data
         }
 
         public DbSet<ToDo> ToDos { get; set; }
+        public DbSet<Group> Groups { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
