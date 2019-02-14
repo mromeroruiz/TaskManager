@@ -87,7 +87,7 @@ namespace TaskManager.WebMVC.Controllers
             }
             var service = CreateGroupService();
 
-            if(service.UpdateGroup(model))
+            if (service.UpdateGroup(model))
             {
                 TempData["SaveResult"] = "Your group was updated.";
                 return RedirectToAction("Index");
@@ -125,5 +125,15 @@ namespace TaskManager.WebMVC.Controllers
             var service = new GroupService(userId);
             return service;
         }
+
+        public ActionResult Join(int id)
+        {
+            var service = CreateGroupService();
+            var join = service.JoinGroup(id);
+                
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,9 @@ namespace TaskManager.Data
         public int UserID { get; set; }
         [Required]
         public int GroupID { get; set; }
-        public bool Checkbox { get; set; }
+
+        [DefaultValue(false)]
+        public bool IsDone { get; set; }
 
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }

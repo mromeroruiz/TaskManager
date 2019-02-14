@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TaskManager.Data;
 using TaskManager.Models;
 using TaskManager.Services;
 
@@ -11,6 +12,8 @@ namespace TaskManager.WebMVC.Controllers
 {
     public class ToDoController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         [Authorize]
         // GET: Task
         public ActionResult Index()
@@ -25,6 +28,7 @@ namespace TaskManager.WebMVC.Controllers
         
         public ActionResult Create()
         {
+            ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName");
             return View();
         }
 
@@ -44,6 +48,7 @@ namespace TaskManager.WebMVC.Controllers
             };
 
             ModelState.AddModelError("", "Note could not be created.");
+            ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName");
             return View(model);
         }
 

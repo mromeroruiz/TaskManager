@@ -25,6 +25,8 @@ namespace TaskManager.Services
                     OwnerID = _userID,
                     Title = model.Title,
                     Details = model.Details,
+                    GroupID = model.GroupID,
+                    IsDone = false,
                     CreatedUtc = DateTimeOffset.Now
                 };
 
@@ -36,6 +38,7 @@ namespace TaskManager.Services
         }
         public IEnumerable<ToDoListItem> GetToDos()
         {
+
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
@@ -48,6 +51,8 @@ namespace TaskManager.Services
                                 {
                                     ToDoID = e.ToDoID,
                                     Title = e.Title,
+                                    GroupID = e.GroupID,
+                                    IsDone = e.IsDone,
                                     CreatedUtc = e.CreatedUtc
                                 }
                         );
@@ -68,6 +73,7 @@ namespace TaskManager.Services
                         ToDoID = entity.ToDoID,
                         Title = entity.Title,
                         Details = entity.Details,
+                        GroupID = entity.GroupID,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc
 
@@ -85,7 +91,9 @@ namespace TaskManager.Services
                         .Single(e => e.ToDoID == model.ToDoID && e.OwnerID == _userID);
                 entity.Title = model.Title;
                 entity.Details = model.Details;
+                entity.GroupID = model.GroupID;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
+                entity.IsDone = model.IsDone;
 
                 return ctx.SaveChanges() == 1;
 

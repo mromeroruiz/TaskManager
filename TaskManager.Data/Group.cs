@@ -13,5 +13,6 @@ namespace TaskManager.Data
         public int GroupID { get; set; }
         [Required]
         public string GroupName { get; set; }
+        public Guid OwnerID { get; set; }
     }
 }

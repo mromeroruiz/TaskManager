@@ -16,6 +16,8 @@ namespace TaskManager.Models
         [MaxLength(8000)]
         public string Details { get; set; }
 
+        public int GroupID { get; set; }
+
         public override string ToString()
         {
             return base.ToString();

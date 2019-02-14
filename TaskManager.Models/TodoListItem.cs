@@ -13,7 +13,13 @@ namespace TaskManager.Models
         public bool Checkbox { get; set; }
         public string Title { get; set; }
 
+        [UIHint("IsDone")]
+        [Display(Name = "Completed?")]
+        public bool IsDone { get; set; }
+
         public DateTimeOffset CreatedUtc { get; set; }
+        public int GroupID { get; set; }
+
         [Display(Name="Created")]
         public override string ToString()
         {

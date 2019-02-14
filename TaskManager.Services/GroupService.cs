@@ -24,7 +24,8 @@ namespace TaskManager.Services
             var entity =
                 new Group()
                 {
-                    GroupName = model.GroupName
+                    GroupName = model.GroupName,
+                    OwnerID = _userId
                 };
                    
 
@@ -105,6 +106,22 @@ namespace TaskManager.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public bool JoinGroup(int groupId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var user =
+                    ctx.Users.Single(e => e.Id == _userId.ToString());
+
+                user.GroupID = groupId;
+
+                return ctx.SaveChanges() == 1;
+
+            }
+        }
+
+
     }
 }
 

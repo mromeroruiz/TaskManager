@@ -16,6 +16,8 @@ namespace TaskManager.Models
         public DateTimeOffset CreatedUtc { get; set; }
         [Display(Name = "Modified")]
         public DateTimeOffset? ModifiedUtc { get; set; }
+        public int GroupID { get; set; }
+
         public override string ToString() => $"[{ToDoID}] {Title}";
         
     }

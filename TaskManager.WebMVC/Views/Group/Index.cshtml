@@ -40,9 +40,10 @@
                 @Html.DisplayFor(modelItem => item.GroupName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.GroupID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.GroupID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.GroupID })
+                @Html.ActionLink("Join", "Join", new { id = item.GroupID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.GroupID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.GroupID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.GroupID })
             </td>
         </tr>
     }
