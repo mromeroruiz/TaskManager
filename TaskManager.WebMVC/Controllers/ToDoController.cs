@@ -25,7 +25,7 @@ namespace TaskManager.WebMVC.Controllers
             return View(model);
         }
         // GET
-        
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Create()
         {
             ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName");
@@ -59,13 +59,14 @@ namespace TaskManager.WebMVC.Controllers
 
             return View(model);
         }
-
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Edit(int id)
         {
             var service = CreateToDoService();
             var detail = service.GetToDoById(id);
             var model = new ToDoEdit
             {
+                GroupID = detail.GroupID,
                 ToDoID = detail.ToDoID,
                 Title = detail.Title,
                 Details = detail.Details
@@ -97,6 +98,7 @@ namespace TaskManager.WebMVC.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin, Manager")]
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {

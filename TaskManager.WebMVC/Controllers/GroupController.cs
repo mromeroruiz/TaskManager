@@ -25,7 +25,7 @@ namespace TaskManager.WebMVC.Controllers
         }
 
         // Get Group/Create
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -53,6 +53,7 @@ namespace TaskManager.WebMVC.Controllers
 
         }
 
+        
         public ActionResult Details(int id)
         {
             var svc = CreateGroupService();
@@ -61,7 +62,7 @@ namespace TaskManager.WebMVC.Controllers
             return View(model);
         }
 
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             var service = CreateGroupService();
@@ -76,6 +77,7 @@ namespace TaskManager.WebMVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, GroupEdit model)
         {
@@ -98,6 +100,7 @@ namespace TaskManager.WebMVC.Controllers
         }
 
         [ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             var svc = CreateGroupService();
@@ -105,7 +108,9 @@ namespace TaskManager.WebMVC.Controllers
 
             return View(model);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
@@ -130,7 +135,7 @@ namespace TaskManager.WebMVC.Controllers
         {
             var service = CreateGroupService();
             var join = service.JoinGroup(id);
-                
+            TempData["SaveResult"] = "Joined group";
             return RedirectToAction("Index");
         }
 

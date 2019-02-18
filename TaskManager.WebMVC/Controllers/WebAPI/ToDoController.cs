@@ -14,27 +14,28 @@ namespace TaskManager.WebMVC.Controllers.WebAPI
     [RoutePrefix("api/ToDo")]
     public class ToDoController : ApiController
     {
-        private bool SetStarState(int toDoID, bool newState)
+        private bool SetStarState(int toDoId, bool newState)
         {
             // Create the service
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new ToDoService(userId);
 
             // Get the note
-            var detail = service.GetToDoById(toDoID);
+            var detail = service.GetToDoById(toDoId);
 
             // Create the NoteEdit model instance with the new star state
-            var updatedNote =
+            var updatedToDo =
                 new ToDoEdit
                 {
                     ToDoID = detail.ToDoID,
+                    GroupID = detail.GroupID,
                     Title = detail.Title,
                     Details = detail.Details,
                     IsDone = newState
                 };
 
             // Return a value indicating whether the update succeeded
-            return service.UpdateToDo(updatedNote);
+            return service.UpdateToDo(updatedToDo);
         }
 
         [Route("{id}/Star")]

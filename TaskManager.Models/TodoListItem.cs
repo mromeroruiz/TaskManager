@@ -12,8 +12,9 @@ namespace TaskManager.Models
         public int ToDoID { get; set; }
         public bool Checkbox { get; set; }
         public string Title { get; set; }
+        public Guid OwnerID { get; set; }
 
-        [UIHint("IsDone")]
+        [UIHint("Starred")]
         [Display(Name = "Completed?")]
         public bool IsDone { get; set; }
 

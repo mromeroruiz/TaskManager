@@ -17,6 +17,7 @@ namespace TaskManager.Services
             _userID = userID;
         }
 
+        
         public bool CreateToDo(ToDoCreate model)
         {
             var entity =
@@ -41,14 +42,18 @@ namespace TaskManager.Services
 
             using (var ctx = new ApplicationDbContext())
             {
+                var user =
+                    ctx.Users.Single(e => e.Id == _userID.ToString());
+
                 var query =
                     ctx
                         .ToDos
-                        .Where(e => e.OwnerID == _userID)
+                        .Where(e => e.GroupID == user.GroupID)
                         .Select(
                             e =>
                                 new ToDoListItem
                                 {
+                                    OwnerID = e.OwnerID,
                                     ToDoID = e.ToDoID,
                                     Title = e.Title,
                                     GroupID = e.GroupID,
@@ -66,10 +71,11 @@ namespace TaskManager.Services
             {
                 var entity = ctx
                     .ToDos
-                    .Single(e => e.ToDoID == toDoId && e.OwnerID == _userID);
+                    .Single(e => e.ToDoID == toDoId);
                 return
                     new ToDoDetails
                     {
+                        
                         ToDoID = entity.ToDoID,
                         Title = entity.Title,
                         Details = entity.Details,
@@ -88,7 +94,7 @@ namespace TaskManager.Services
                 var entity =
                     ctx
                         .ToDos
-                        .Single(e => e.ToDoID == model.ToDoID && e.OwnerID == _userID);
+                        .Single(e => e.ToDoID == model.ToDoID);
                 entity.Title = model.Title;
                 entity.Details = model.Details;
                 entity.GroupID = model.GroupID;
@@ -106,7 +112,7 @@ namespace TaskManager.Services
             {
                 var entity = ctx
                     .ToDos
-                    .Single(e => e.ToDoID == toDoId && e.OwnerID == _userID);
+                    .Single(e => e.ToDoID == toDoId);
                 ctx.ToDos.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }
