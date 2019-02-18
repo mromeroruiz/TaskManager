@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManager.Contracts;
 using TaskManager.Data;
 using TaskManager.Models;
 
 namespace TaskManager.Services
 {
-    public class ToDoService
+    public class ToDoService : IToDoService
     {
         private readonly Guid _userID;
 
@@ -17,7 +18,7 @@ namespace TaskManager.Services
             _userID = userID;
         }
 
-        
+
         public bool CreateToDo(ToDoCreate model)
         {
             var entity =
@@ -75,7 +76,7 @@ namespace TaskManager.Services
                 return
                     new ToDoDetails
                     {
-                        
+
                         ToDoID = entity.ToDoID,
                         Title = entity.Title,
                         Details = entity.Details,

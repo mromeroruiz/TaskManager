@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using TaskManager.Contracts;
 using TaskManager.Data;
 using TaskManager.Models;
 using Group = TaskManager.Data.Group;
 
 namespace TaskManager.Services
 {
-    public class GroupService
+    public class GroupService : IGroupService
     {
         private readonly Guid _userId;
 
